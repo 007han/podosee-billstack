@@ -2,14 +2,9 @@
 import "../styles/globals.css";
 import { useRecoilState } from "recoil";
 import { itemState } from "../recoil/itemState";
+import { Menu } from "../type/Menu";
 
-export function ItemCard({
-  itemName,
-  itemPrice,
-}: {
-  itemName: string;
-  itemPrice: number;
-}) {
+export function MenuCard({ itemName, price }: Menu) {
   const [itemListState, setItemListState] = useRecoilState(itemState);
   const addItem = () => {
     const findMenu = itemListState.find((x) => x.itemName === itemName);
@@ -22,7 +17,7 @@ export function ItemCard({
             ? {
                 ...item,
                 itemAmount: (item.itemAmount || 0) + 1,
-                totalPrice: itemPrice + item.totalPrice,
+                totalPrice: price + item.totalPrice,
               }
             : item
         )
@@ -34,7 +29,7 @@ export function ItemCard({
         {
           itemName: itemName,
           itemAmount: 1,
-          totalPrice: itemPrice,
+          totalPrice: price,
         },
       ]);
     }
@@ -44,7 +39,7 @@ export function ItemCard({
     <div className="itemcardcontainer">
       <button className="itemcard" onClick={addItem}>
         <h2>{itemName}</h2>
-        <h2>{itemPrice}원</h2>
+        <h2>{price}원</h2>
       </button>
     </div>
   );
