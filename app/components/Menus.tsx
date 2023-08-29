@@ -9,7 +9,7 @@ import { itemState } from "../recoil/itemState";
  * 2. 데이터에서 커피, 논커피 메뉴를 구분한다.
  * 3. 구분된 목록을 각각 순회한다
  */
-export function Items({ onSelect }: { onSelect: (item: Menu) => void }) {
+export function Menus({ onSelect }: { onSelect: (item: Menu) => void }) {
   const menus = useMenus();
 
   const coffeMenu = menus.filter((menu) => menu.isCoffee);
